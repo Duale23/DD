@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DualeDaily</title>
+    <link rel="manifest" href="/manifest.json" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('/service-worker.js');
+      }
+    </script>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        padding: 1rem;
+        background: #f8f8ff;
+        color: #333;
+      }
+      .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .signature {
+        font-weight: bold;
+        font-size: 1.2rem;
+        color: #4f46e5;
+      }
+      .question {
+        margin-top: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>DualeDaily</h1>
+      <div class="signature">DD</div>
+    </div>
+
+    <div id="app" class="question">
+      <!-- Questions et réponses seront insérées ici -->
+      <p>Comment te sens-tu ce matin ?</p>
+      <textarea rows="6" cols="40" placeholder="Écris au moins 125 caractères..."></textarea>
+      <br />
+      <button onclick="submit()">Envoyer</button>
+      <div id="message"></div>
+    </div>
+
+    <script>
+      function submit() {
+        const textarea = document.querySelector("textarea");
+        const msg = document.getElementById("message");
+        if (textarea.value.length < 125) {
+          msg.innerHTML = "❌ Minimum 125 caractères requis.";
+        } else {
+          msg.innerHTML = "✅ Merci pour ta réponse ! Voici un adage :<br><em>“Chaque jour est une nouvelle chance de mieux faire.”</em>";
+        }
+      }
+    </script>
+  </body>
+</html>
